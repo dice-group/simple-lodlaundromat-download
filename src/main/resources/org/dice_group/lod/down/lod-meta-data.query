@@ -1,0 +1,23 @@
+PREFIX llo: <http://lodlaundromat.org/ontology/>
+PREFIX ll: <http://lodlaundromat.org/resource/>
+
+SELECT ?datadoc ?md5 ?url ?triples ?parent WHERE
+{
+    {
+       ?datadoc llo:url ?url ;
+       llo:triples ?triples ;
+       llo:md5 ?md5 .
+    } UNION {
+       ?datadoc llo:path ?url ;
+       llo:triples ?triples ;
+       llo:md5 ?md5 .
+       ?parent llo:containsEntry ?datadoc .
+    } UNION {
+       ?datadoc a llo:Archive ;
+       llo:md5 ?md5;
+       llo:containsEntry [].
+       {?datadoc llo:url ?url}
+       UNION
+       {?datadoc llo:path ?url}
+    }
+}

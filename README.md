@@ -1,0 +1,1 @@
+A simple code that reads the list of available RDF datasets from the [LOD laundromats](http://lodlaundromat.org/) SPARQL endpoint and writes the meta data into a tsv file and a bash script for downloading the datasets as HDT files.
